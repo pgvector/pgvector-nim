@@ -21,4 +21,5 @@ jobs:
           make
           sudo make install
       - run: nimble -y install db_connector
-      - run: nim c --run example.nim
+      - run: nim c example.nim
+      - run: ./example
