@@ -31,17 +31,17 @@ Insert vectors
 ```nim
 import std/json
 
-let embedding1 = %* @[1, 1, 1];
-let embedding2 = %* @[1, 1, 2];
-let embedding3 = %* @[2, 2, 2];
-db.exec(sql"INSERT INTO items (embedding) VALUES (?), (?), (?)", embedding1, embedding2, embedding3)
+let embedding1 = @[1, 1, 1];
+let embedding2 = @[1, 1, 2];
+let embedding3 = @[2, 2, 2];
+db.exec(sql"INSERT INTO items (embedding) VALUES (?), (?), (?)", %* embedding1, %* embedding2, %* embedding3)
 ```
 
 Get the nearest neighbors
 
 ```nim
-let embedding = %* @[1, 1, 1];
-let rows = db.getAllRows(sql"SELECT * FROM items ORDER BY embedding <-> ? LIMIT 5", embedding)
+let embedding = @[1, 1, 1];
+let rows = db.getAllRows(sql"SELECT * FROM items ORDER BY embedding <-> ? LIMIT 5", %* embedding)
 for row in rows:
   echo row
 ```
