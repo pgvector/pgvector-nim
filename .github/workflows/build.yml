@@ -5,7 +5,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: sudo apt-get update && sudo apt-get install nim
+      - run: |
+          cd /tmp
+          wget -q https://nim-lang.org/download/nim-2.0.0-linux_x64.tar.xz
+          tar xf nim-2.0.0-linux_x64.tar.xz
+          echo "/tmp/nim-2.0.0/bin" >> $GITHUB_PATH
       - uses: ankane/setup-postgres@v1
         with:
           database: pgvector_nim_test
@@ -16,5 +20,5 @@ jobs:
           cd pgvector
           make
           sudo make install
-      - run: nimble install db_connector
+      - run: nimble -y install db_connector
       - run: nim c --run example.nim
