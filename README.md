@@ -4,7 +4,7 @@
 
 Supports [db_connector](https://github.com/nim-lang/db_connector)
 
-[![Build Status](https://github.com/pgvector/pgvector-nim/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pgvector/pgvector-nim/actions)
+[![Build Status](https://github.com/pgvector/pgvector-nim/actions/workflows/build.yml/badge.svg)](https://github.com/pgvector/pgvector-nim/actions)
 
 ## Getting Started
 
