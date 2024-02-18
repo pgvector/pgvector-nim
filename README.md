@@ -49,9 +49,9 @@ for row in rows:
 Add an approximate index
 
 ```nim
-db.exec(sql"CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (lists = 100)")
-# or
 db.exec(sql"CREATE INDEX ON items USING hnsw (embedding vector_l2_ops)")
+# or
+db.exec(sql"CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (lists = 100)")
 ```
 
 Use `vector_ip_ops` for inner product and `vector_cosine_ops` for cosine distance
