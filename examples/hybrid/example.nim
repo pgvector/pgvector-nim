@@ -1,5 +1,5 @@
 import db_connector/db_postgres
-import std/[envvars, httpclient, json, sequtils, sugar]
+import std/[httpclient, json, sequtils, sugar]
 
 let db = db_postgres.open("localhost", "", "", "pgvector_example")
 
