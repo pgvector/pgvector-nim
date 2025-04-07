@@ -12,6 +12,10 @@ Follow the instructions for your database library:
 
 - [db_connector](#db_connector)
 
+Or check out an example:
+
+- [Embeddings](examples/openai/example.nim) with OpenAI
+
 ## db_connector
 
 Enable the extension
