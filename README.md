@@ -15,7 +15,7 @@ Follow the instructions for your database library:
 Or check out an example:
 
 - [Embeddings](examples/openai/example.nim) with OpenAI
-- [Embeddings](examples/cohere/example.nim) with Cohere
+- [Binary embeddings](examples/cohere/example.nim) with Cohere
 
 ## db_connector
 
