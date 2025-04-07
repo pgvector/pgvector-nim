@@ -82,3 +82,11 @@ Specify the path to libpq if needed:
 ```sh
 nim c --run --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib" example.nim
 ```
+
+To run an example:
+
+```sh
+cd examples/openai
+createdb pgvector_example
+nim c --run example.nim
+```
