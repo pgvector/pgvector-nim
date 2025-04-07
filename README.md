@@ -16,6 +16,7 @@ Or check out an example:
 
 - [Embeddings](examples/openai/example.nim) with OpenAI
 - [Binary embeddings](examples/cohere/example.nim) with Cohere
+- [Hybrid search](examples/hybrid/example.nim) with Ollama (Reciprocal Rank Fusion)
 
 ## db_connector
 
