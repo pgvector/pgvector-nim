@@ -23,7 +23,7 @@ proc embed(input: openArray[string]): seq[seq[float]] =
   try:
     let response = client.request(url, httpMethod = HttpPost, body = $body)
     let data = parseJson(response.bodyStream)["data"]
-    collect(newSeqOfCap(input.len)):
+    collect(newSeqOfCap(data.len)):
       for obj in data:
         collect(newSeqOfCap(obj["embedding"].len)):
           for v in obj["embedding"]: v.getFloat()
