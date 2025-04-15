@@ -5,13 +5,13 @@ let db = db_postgres.open("localhost", "", "", "pgvector_example")
 
 db.exec(sql"CREATE EXTENSION IF NOT EXISTS vector")
 db.exec(sql"DROP TABLE IF EXISTS documents")
-db.exec(sql"CREATE TABLE documents (id bigserial PRIMARY KEY, content text, embedding bit(1024))")
+db.exec(sql"CREATE TABLE documents (id bigserial PRIMARY KEY, content text, embedding bit(1536))")
 
 proc embed(texts: openArray[string], inputType: string): seq[string] =
-  let url = "https://api.cohere.com/v1/embed"
+  let url = "https://api.cohere.com/v2/embed"
   let body = %*{
     "texts": texts,
-    "model": "embed-english-v3.0",
+    "model": "embed-v4.0",
     "input_type": inputType,
     "embedding_types": ["ubinary"]
   }
