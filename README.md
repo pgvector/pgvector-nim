@@ -1,6 +1,6 @@
 # pgvector-nim
 
-[pgvector](https://github.com/pgvector/pgvector) examples for Nim
+[pgvector](https://github.com/pgvector/pgvector) support for Nim
 
 Supports [db_connector](https://github.com/nim-lang/db_connector)
 
@@ -63,7 +63,11 @@ db.exec(sql"CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (
 
 Use `vector_ip_ops` for inner product and `vector_cosine_ops` for cosine distance
 
-See a [full example](example.nim)
+See a [full example](tests/tdb_connector.nim)
+
+## History
+
+View the [changelog](https://github.com/pgvector/pgvector-nim/blob/master/CHANGELOG.md)
 
 ## Contributing
 
@@ -81,13 +85,13 @@ git clone https://github.com/pgvector/pgvector-nim.git
 cd pgvector-nim
 createdb pgvector_nim_test
 nimble install db_connector
-nim c --run example.nim
+nimble test --features:dev --parser:declarative
 ```
 
 Specify the path to libpq if needed:
 
 ```sh
-nim c --run --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib" example.nim
+nimble test --features:dev --parser:declarative --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib"
 ```
 
 To run an example:
@@ -96,4 +100,10 @@ To run an example:
 cd examples/openai
 createdb pgvector_example
 nim c --run example.nim
+```
+
+Specify the path to libpq if needed:
+
+```sh
+nim c --run --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib" example.nim
 ```
