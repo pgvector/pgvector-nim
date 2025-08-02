@@ -113,7 +113,7 @@ Or a table of non-zero elements
 
 ```nim
 let elements = {0: 1.0, 2: 2.0, 4: 3.0}.toTable
-let vec = table.toSparseVector(6)
+let vec = elements.toSparseVector(6)
 ```
 
 Note: Indices start at 0
