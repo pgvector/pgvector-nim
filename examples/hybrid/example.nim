@@ -1,4 +1,5 @@
 import db_connector/db_postgres
+import pgvector
 import std/[httpclient, json, sequtils, sugar]
 
 let db = db_postgres.open("localhost", "", "", "pgvector_example")
@@ -42,7 +43,7 @@ let input = [
 ]
 let embeddings = embed(input, "search_document")
 for (content, embedding) in zip(input, embeddings):
-  db.exec(sql"INSERT INTO documents (content, embedding) VALUES (?, ?)", content, %* embedding)
+  db.exec(sql"INSERT INTO documents (content, embedding) VALUES (?, ?)", content, embedding.toVector)
 
 let stmt = sql"""
 WITH semantic_search AS (
@@ -70,7 +71,7 @@ LIMIT 5
 let query = "growling bear"
 let queryEmbedding = embed([query], "search_query")[0]
 let k = 60
-let rows = db.getAllRows(stmt, %* queryEmbedding, %* queryEmbedding, query, k, k)
+let rows = db.getAllRows(stmt, queryEmbedding.toVector, queryEmbedding.toVector, query, k, k)
 for row in rows:
   echo "document: " & row[0] & ", RRF score: " & row[1]
 
