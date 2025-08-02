@@ -8,7 +8,13 @@ Supports [db_connector](https://github.com/nim-lang/db_connector)
 
 ## Getting Started
 
-Follow the instructions for your database library:
+Run:
+
+```sh
+nimble add https://github.com/pgvector/pgvector-nim.git
+```
+
+And follow the instructions for your database library:
 
 - [db_connector](#db_connector)
 
@@ -36,19 +42,19 @@ db.exec(sql"CREATE TABLE items (id bigserial PRIMARY KEY, embedding vector(3))")
 Insert vectors
 
 ```nim
-import std/json
+import pgvector
 
 let embedding1 = @[1, 1, 1]
 let embedding2 = @[1, 1, 2]
 let embedding3 = @[2, 2, 2]
-db.exec(sql"INSERT INTO items (embedding) VALUES (?), (?), (?)", %* embedding1, %* embedding2, %* embedding3)
+db.exec(sql"INSERT INTO items (embedding) VALUES (?), (?), (?)", embedding1.toVector, embedding2.toVector, embedding3.toVector)
 ```
 
 Get the nearest neighbors
 
 ```nim
 let embedding = @[1, 1, 1]
-let rows = db.getAllRows(sql"SELECT * FROM items ORDER BY embedding <-> ? LIMIT 5", %* embedding)
+let rows = db.getAllRows(sql"SELECT * FROM items ORDER BY embedding <-> ? LIMIT 5", embedding.toVector)
 for row in rows:
   echo row
 ```
@@ -64,6 +70,65 @@ db.exec(sql"CREATE INDEX ON items USING ivfflat (embedding vector_l2_ops) WITH (
 Use `vector_ip_ops` for inner product and `vector_cosine_ops` for cosine distance
 
 See a [full example](tests/tdb_connector.nim)
+
+## Reference
+
+### Vectors
+
+Create a vector from a sequence or array
+
+```nim
+let vec = @[1.0, 2.0, 3.0].toVector
+```
+
+Get a sequence
+
+```nim
+let s = vec.toSeq
+```
+
+### Half Vectors
+
+Create a half vector from a sequence or array
+
+```nim
+let vec = @[1.0, 2.0, 3.0].toHalfVector
+```
+
+Get a sequence
+
+```nim
+let s = vec.toSeq
+```
+
+### Sparse Vectors
+
+Create a sparse vector from a sequence or array
+
+```nim
+let vec = @[1.0, 0.0, 2.0, 0.0, 3.0, 0.0].toSparseVector
+```
+
+Or a table of non-zero elements
+
+```nim
+let elements = {0: 1.0, 2: 2.0, 4: 3.0}.toTable
+let vec = table.toSparseVector(6)
+```
+
+Note: Indices start at 0
+
+Get the number of dimensions
+
+```nim
+let dim = vec.dim
+```
+
+Get the non-zero elements
+
+```nim
+let elements = vec.elements
+```
 
 ## History
 
