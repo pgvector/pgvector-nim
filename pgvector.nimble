@@ -10,6 +10,4 @@ srcDir        = "src"
 # Dependencies
 
 requires "nim >= 2.0.0"
-
-dev:
-  requires "db_connector >= 0.1.0"
+taskRequires "test", "db_connector >= 0.1.0"

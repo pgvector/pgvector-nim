@@ -150,13 +150,13 @@ git clone https://github.com/pgvector/pgvector-nim.git
 cd pgvector-nim
 createdb pgvector_nim_test
 nimble install db_connector
-nimble test --features:dev --parser:declarative
+nimble test
 ```
 
 Specify the path to libpq if needed:
 
 ```sh
-nimble test --features:dev --parser:declarative --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib"
+nimble test --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib"
 ```
 
 To run an example:

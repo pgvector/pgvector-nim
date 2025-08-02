@@ -23,4 +23,4 @@ jobs:
           make
           sudo make install
       - run: nimble -y install db_connector
-      - run: nimble test --features:dev --parser:declarative
+      - run: nimble test
