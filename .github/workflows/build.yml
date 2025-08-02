@@ -7,9 +7,11 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           cd /tmp
-          wget -q https://nim-lang.org/download/nim-2.2.0-linux_x64.tar.xz
-          tar xf nim-2.2.0-linux_x64.tar.xz
-          echo "/tmp/nim-2.2.0/bin" >> $GITHUB_PATH
+          wget -q https://nim-lang.org/download/nim-$NIM_VERSION-linux_x64.tar.xz
+          tar xf nim-$NIM_VERSION-linux_x64.tar.xz
+          echo "/tmp/nim-$NIM_VERSION/bin" >> $GITHUB_PATH
+        env:
+          NIM_VERSION: 2.2.4
       - uses: ankane/setup-postgres@v1
         with:
           database: pgvector_nim_test
