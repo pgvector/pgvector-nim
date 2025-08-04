@@ -11,7 +11,7 @@ Supports [db_connector](https://github.com/nim-lang/db_connector)
 Run:
 
 ```sh
-nimble add https://github.com/pgvector/pgvector-nim.git
+nimble add pgvector
 ```
 
 And follow the instructions for your database library:
