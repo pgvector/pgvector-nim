@@ -156,7 +156,7 @@ nimble test
 Specify the path to libpq if needed:
 
 ```sh
-nimble test --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib"
+nimble test --passL:-Wl,-rpath,/opt/homebrew/opt/libpq/lib
 ```
 
 To run an example:
@@ -170,5 +170,5 @@ nim c --run --path:../../src example.nim
 Specify the path to libpq if needed:
 
 ```sh
-nim c --run --path:../../src --dynlibOverride:pq --passL:"/opt/homebrew/opt/libpq/lib/libpq.dylib" example.nim
+nim c --run --path:../../src --passL:-Wl,-rpath,/opt/homebrew/opt/libpq/lib example.nim
 ```
