@@ -4,7 +4,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: |
           cd /tmp
           wget -q https://nim-lang.org/download/nim-$NIM_VERSION-linux_x64.tar.xz
