@@ -4,21 +4,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: |
           cd /tmp
           wget -q https://nim-lang.org/download/nim-$NIM_VERSION-linux_x64.tar.xz
           tar xf nim-$NIM_VERSION-linux_x64.tar.xz
           echo "/tmp/nim-$NIM_VERSION/bin" >> $GITHUB_PATH
         env:
-          NIM_VERSION: 2.2.6
+          NIM_VERSION: 2.2.8
       - uses: ankane/setup-postgres@v1
         with:
           database: pgvector_nim_test
           dev-files: true
       - run: |
           cd /tmp
-          git clone --branch v0.8.1 https://github.com/pgvector/pgvector.git
+          git clone --branch v0.8.2 https://github.com/pgvector/pgvector.git
           cd pgvector
           make
           sudo make install
